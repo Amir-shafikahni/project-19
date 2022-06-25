@@ -58,6 +58,8 @@ function inputValidation(event) {
   if (inputElem.value.length > 2 && inputElem.value.length < 30) {
     addTodo();
   } else {
+    inputElem.value = ""
+    
     inputValidationAlert.style.display = "block";
     setTimeout(function () {
       inputValidationAlert.style.transform = "translateX(0px)";
