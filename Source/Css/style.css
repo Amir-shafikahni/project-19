@@ -1,0 +1,89 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+h1{
+    padding-top: 80px;
+    font-weight: 400;
+}
+
+h2{
+    font-weight: 400;
+}
+
+.form-label{
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.form-control{
+    font-size: 18px;   
+}
+
+.todoContainer{
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    padding: 8px 10px;
+    align-items: center;
+    justify-content: end;
+
+}
+
+.todoContainer div{
+    margin-right: auto;
+    overflow: hidden;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.inputValidationAlert{
+    background-color: rgb(223, 84, 84);
+    border-radius: 15px;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    transform: translateX(-400px);
+    transition: transform 0.7s , opacity 1.2s;
+    overflow: hidden;
+    padding: 6px 8px;
+    color: white;
+    display: none;
+    opacity: 0;
+}
+
+.inputValidationAlert::before{
+    content: "";
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 4px;
+    border-radius: 50px;
+    animation: timeLine 5s linear 1;
+}
+
+.copyRight{
+    position: fixed;
+    bottom: 5px;
+    width: 100%;
+    text-align: center;
+}
+
+.completed{
+    text-decoration: line-through;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+@keyframes timeLine {
+    0%{width: 0;}
+    100%{width: 100%;}
+}
+
+@media only screen and (max-width :600px){
+    .todoContainer div{
+        font-size: 15px;
+    }
+}
