@@ -55,11 +55,11 @@ function keyValidation(event) {
 
 // to validate input value lenght and give access to creat a new todo
 function inputValidation(event) {
-  if (inputElem.value.length > 2 && inputElem.value.length < 30) {
+  if (inputElem.value.trim().length > 2 && inputElem.value.trim().length < 30) {
     addTodo();
   } else {
     inputElem.value = ""
-    
+
     inputValidationAlert.style.display = "block";
     setTimeout(function () {
       inputValidationAlert.style.transform = "translateX(0px)";
