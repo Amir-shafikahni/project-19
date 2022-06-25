@@ -38,7 +38,7 @@ h2{
     transition: 0.3s;
 }
 
-.inputValidationAlert{
+.alert{
     background-color: rgb(223, 84, 84);
     border-radius: 15px;
     position: absolute;
@@ -53,7 +53,7 @@ h2{
     opacity: 0;
 }
 
-.inputValidationAlert::before{
+.alert::before{
     content: "";
     background-color: rgba(0, 0, 0, 0.6);
     position: absolute;

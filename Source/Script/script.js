@@ -6,12 +6,12 @@ let $ = document;
 const body = $.body;
 const mainContainer = $.querySelector(".container");
 const inputElem = $.querySelector(".form-control");
-const inputValidationAlert = $.querySelector(".inputValidationAlert");
 const addTodoBtn = $.querySelector(".addTodoBtn");
 const clearTodoListBtn = $.querySelector(".clearListBtn");
 
 // fucntions//////////////////////////
 
+// to update the dom and add todos from localStorage on load
 function domUpdaterOnLoad() {
   var localStorageTodoInfos = JSON.parse(localStorage.getItem("all todo Texts"));
   
@@ -55,24 +55,41 @@ function keyValidation(event) {
 
 // to validate input value lenght and give access to creat a new todo
 function inputValidation(event) {
-  if (inputElem.value.trim().length > 2 && inputElem.value.trim().length < 30) {
-    addTodo();
-  } else {
-    inputElem.value = ""
+  const allTodoTexts = $.querySelectorAll(".todoText")
+  let isThisTodoExist = false
 
-    inputValidationAlert.style.display = "block";
+  allTodoTexts.forEach(function(todoText){
+    if(todoText.innerHTML === inputElem.value){
+      isThisTodoExist = true
+    }
+  })
+
+  if(isThisTodoExist){
+    showAlert(".repeatedTodoAlert")
+  }else if (inputElem.value.trim().length > 2 && inputElem.value.trim().length < 30){
+    addTodo()
+  }else{
+    showAlert(".inputValidationAlert")
+  }
+}
+
+// to show alerts by adding stles to elements
+function showAlert(alertClassName){
+  let alert = $.querySelector(alertClassName)
+  alert.style.display = "block";
     setTimeout(function () {
-      inputValidationAlert.style.transform = "translateX(0px)";
-      inputValidationAlert.style.opacity = "1";
+      alert.style.transform = "translateX(0px)";
+      alert.style.opacity = "1";
     }, 1);
     setTimeout(function () {
-      inputValidationAlert.style.transform = "translateX(-400px)";
-      inputValidationAlert.style.opacity = "0";
+      alert.style.transform = "translateX(-400px)";
+      alert.style.opacity = "0";
     }, 5001);
     setTimeout(function () {
-      inputValidationAlert.style.display = "none";
+      alert.style.display = "none";
     }, 5700);
-  }
+
+    inputElem.value = ""
 }
 
 // to creat a complete template for the new todo
@@ -178,8 +195,7 @@ function localStorageAddTodoAction() {
 }
 
 function localStorageDeleteAction(event) {
-  let deletedTodoText =
-    event.target.previousElementSibling.previousElementSibling.innerHTML;
+  let deletedTodoText = event.target.previousElementSibling.previousElementSibling.innerHTML;
   let localStorageInfo = JSON.parse(localStorage.getItem("all todo Texts"));
   let deletedTodoTextIndex = localStorageInfo.findIndex(function (todoInfo) {
     return todoInfo.content === deletedTodoText;
