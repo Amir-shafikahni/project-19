@@ -59,7 +59,7 @@ function inputValidation(event) {
   let isThisTodoExist = false
 
   allTodoTexts.forEach(function(todoText){
-    if(todoText.innerHTML === inputElem.value){
+    if(todoText.innerHTML === inputElem.value.trim()){
       isThisTodoExist = true
     }
   })
@@ -115,7 +115,7 @@ function creatTemplate(MainTodoText, status) {
 
   todoText.innerHTML = MainTodoText;
   statusBtn.innerHTML = status;
-  deleteBtn.innerHTML = "Delete";
+  deleteBtn.innerHTML = "Delete"
 
   todoContainer.append(todoText);
   todoContainer.append(statusBtn);
@@ -142,6 +142,7 @@ function deleteTodo(event) {
 
   localStorageDeleteAction(event);
 }
+
 
 // to get all statusBtns and add event listener
 function eventListenerForTodoStatusBtns() {
