@@ -39,7 +39,7 @@ function liveUserScreenHeightUpdater() {
   body.style.minHeight = liveScreenHeight;
 }
 
-// to focus on the input bty pressing the Enter Btn on keyboard
+// to focus on the input by pressing the Enter Btn on keyboard
 function inputFocus(event) {
   if (event.key === "Enter") {
     inputElem.focus();
