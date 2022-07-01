@@ -113,6 +113,9 @@ function creatTemplate(MainTodoText, status) {
   statusBtn.className = "status btn btn-success me-2";
   deleteBtn.className = "delete btn btn-danger";
 
+  statusBtn.setAttribute("onclick" , "changeStatus(event)")
+  deleteBtn.setAttribute("onclick" , "deleteTodo(event)")
+
   todoText.innerHTML = MainTodoText;
   statusBtn.innerHTML = status;
   deleteBtn.innerHTML = "Delete"
@@ -122,18 +125,6 @@ function creatTemplate(MainTodoText, status) {
   todoContainer.append(deleteBtn);
 
   mainContainer.append(todoContainer);
-
-  eventListenerForDeleteBtns();
-
-  eventListenerForTodoStatusBtns();
-}
-
-// to get all deleteBtns and add event listener
-function eventListenerForDeleteBtns() {
-  let todoDeleteBtns = $.querySelectorAll(".delete");
-  todoDeleteBtns.forEach(function (todoDeleteBtn) {
-    todoDeleteBtn.addEventListener("click", deleteTodo);
-  });
 }
 
 // the delete action
@@ -141,15 +132,6 @@ function deleteTodo(event) {
   event.target.parentElement.remove();
 
   localStorageDeleteAction(event);
-}
-
-
-// to get all statusBtns and add event listener
-function eventListenerForTodoStatusBtns() {
-  let todoStatusBtns = $.querySelectorAll(".status");
-  todoStatusBtns.forEach(function (todoStatusBtn) {
-    todoStatusBtn.addEventListener("click", changeStatus);
-  });
 }
 
 // the change status action
