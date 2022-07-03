@@ -4,7 +4,7 @@ let $ = document;
 
 // variables /////////////////////////
 const body = $.body;
-const mainContainer = $.querySelector(".container");
+const mainTodoContainer = $.querySelector(".mainTodoContainer");
 const inputElem = $.querySelector(".form-control");
 const addTodoBtn = $.querySelector(".addTodoBtn");
 const clearTodoListBtn = $.querySelector(".clearListBtn");
@@ -98,6 +98,7 @@ function addTodo() {
   localStorageAddTodoAction();
 
   inputElem.value = "";
+  inputElem.focus()
 }
 
 // to just creat a template for the new todo
@@ -123,7 +124,7 @@ function creatTemplate(MainTodoText, status) {
   todoContainer.append(statusBtn);
   todoContainer.append(deleteBtn);
 
-  mainContainer.append(todoContainer);
+  mainTodoContainer.append(todoContainer);
 }
 
 // the delete action
@@ -156,23 +157,30 @@ function changeStatus(event) {
 }
 
 // to add an event listener to "clear todo list" btn and its process
-function clearList() {
+function clearList(event) {
   let todoContainers = $.querySelectorAll(".todoContainer");
   todoContainers.forEach(function (todoContainer) {
     todoContainer.remove();
   });
 
   localStorage.clear("all todo Texts");
+
+  event.target.blur()
 }
 
 // local storage fucntions //////////////
 function localStorageAddTodoAction() {
   let allTodoInfos = [];
   let allTodoElems = $.querySelectorAll(".todoText");
+
   allTodoElems.forEach(function (todoText) {
-    let todoInfo = { content: todoText.innerHTML, status: todoText.nextElementSibling.innerHTML };
+    let todoInfo = {
+      content: todoText.innerHTML,
+      status: todoText.nextElementSibling.innerHTML
+    };
     allTodoInfos.push(todoInfo);
   });
+
   localStorage.setItem("all todo Texts", JSON.stringify(allTodoInfos));
 }
 
