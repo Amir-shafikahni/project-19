@@ -31,7 +31,6 @@ function domUpdaterOnLoad() {
     }
   })
 }
-domUpdaterOnLoad();
 
 // to update the minheight of user browser
 function liveUserScreenHeightUpdater() {
@@ -189,6 +188,7 @@ function localStorageDeleteAction(event) {
 }
 
 // event listeners//////////////////////////
+window.addEventListener("load" , domUpdaterOnLoad)
 setInterval(liveUserScreenHeightUpdater, 100);
 body.addEventListener("keydown", inputFocus);
 inputElem.addEventListener("keydown", keyValidation);
